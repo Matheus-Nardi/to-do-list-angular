@@ -1,7 +1,17 @@
-<div>
-    <label class="input-label-text" for="inputValue">
-        <input (keyup.enter)="focusAndAddItem(inputText.value)" type="text" placeholder="Adicione um novo item" id="inputValue" #inputText autofocus>
+<header [ngClass]="{'has-itens': inputListItens.length}">
+    @if (inputListItens.length) {
+    <h1>Minha lista</h1>
+    }
+    <div  [ngClass]="{'container': inputListItens.length}">
+        <label class="input-label-text" for="inputValue" [ngClass]="{'remove-margin-bottom': !inputListItens.length}">
+            <input (keyup.enter)="focusAndAddItem(inputText.value)" type="text" placeholder="Adicione um novo item"
+                id="inputValue" #inputText autofocus>
 
-        <button (click)="focusAndAddItem(inputText.value)" class="btn btn-primary-circle" title="Adicionar um novo item"></button>
-    </label>
-</div>
+            <button (click)="focusAndAddItem(inputText.value)" class="btn btn-primary-circle"
+                title="Adicionar um novo item"></button>
+        </label>
+    </div>
+
+
+
+</header>
