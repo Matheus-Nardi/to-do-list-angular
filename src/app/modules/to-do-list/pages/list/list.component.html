@@ -10,8 +10,30 @@
     }@else {
     <app-input-add-item [inputListItens]="getListItems()" (outputAddListItens)="getInputAndAddItem($event)" />
 
-    }]
+    }
+    <p>{{date() | date:'dd/MM/yyy'}} </p>
+    <p>{{date() | date:'shortTime'}} </p>
 </div>
 }@else {
 <app-input-add-item [inputListItens]="getListItems()" (outputAddListItens)="getInputAndAddItem($event)" />
+
+<main class="container">
+    @if(listItensStage('pending').length){
+    <h2>Pendências</h2>
+    <app-input-list-itens [inputListItens]="listItensStage('pending')"
+        (outputUpdateItemCheckbox)="updateItenCheckbox($event)" (outputUpdateItemText)="updateItenText($event)"
+        (outputDeleteItem)="deleteIten($event)" />
+    }
+
+    @if(listItensStage('completed').length){
+    <h2>Concluídas</h2>
+    <app-input-list-itens [inputListItens]="listItensStage('completed')"
+        (outputUpdateItemCheckbox)="updateItenCheckbox($event)" (outputUpdateItemText)="updateItenText($event)"
+        (outputDeleteItem)="deleteIten($event)" />
+    }
+</main>
+
+<footer>
+    <button (click)="deleteAllItens()" class="btn btn-danger">Deletar todos os itens</button>
+</footer>
 }
